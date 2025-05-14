@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Sales Insights Dashboard Built with Tableau</title>
+  <style>
+    /* General Body Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-top: 100px; /* Adjusted for potentially taller navbar content */
+      background-color: #f0f4f8; /* Fallback background color */
+      text-align: center;
+      color: #333;
+    }
+
+    /* Navigation Bar Styles */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #2980B9;
+      color: black; /* Default text color for nav, can be overridden */
+      padding: 15px 20px; /* Adjusted padding */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      min-width: 150px; /* Ensure space for brand */
+    }
+
+    .navbar-left a.navbar-brand { /* Added class for specificity */
+      text-decoration: none;
+      display: flex; /* Added for better alignment if needed */
+      align-items: center;
+    }
+
+    .brand-toggle {
+      position: relative;
+      width: 140px; /* Can be adjusted */
+      height: 38px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px; /* Optional: rounded corners for the toggle area */
+    }
+
+    #brandText, #brandImg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex; /* Use flex for centering */
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease-in-out; /* Smooth transition for automatic toggle */
+    }
+
+    #brandText {
+      opacity: 1; /* Initially visible */
+      color: #262326; /* Darker text for better contrast */
+      font-weight: bold;
+      font-size: 17px; /* Slightly adjusted */
+    }
+
+    #brandImg {
+      opacity: 0; /* Initially hidden */
+      object-fit: contain; /* Ensures logo fits well */
+    }
+
+    .navbar-center {
+      flex-grow: 1;
+      text-align: center;
+      padding-right: 150px; /* To balance the min-width of navbar-left */
+    }
+
+    @media (max-width: 768px) {
+      .navbar-center {
+        padding-right: 0;
+        margin: 0 10px;
+      }
+      nav {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      body {
+        padding-top: 80px;
+      }
+      .navbar-center h1 {
+        font-size: 18px; /* Adjusted font size for smaller screens */
+      }
+    }
+
+    .navbar-center h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #ffffff; /* Changed to white */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Main Content Area Styles */
+    .content {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .content h3 { /* Changed h2 to h3 to match HTML */
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #34495e;
+    }
+
+    .content p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .dashboard-link {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #3498db;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 25px; /* Added margin to separate from image */
+    }
+
+    .dashboard-link:hover, .dashboard-link:focus {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      outline: none;
+    }
+    .dashboard-link:active {
+      transform: translateY(0);
+    }
+
+    /* Sneak Peek Image Styles */
+    .tableau-sneak-peek {
+      display: block; /* To allow margin auto to center */
+      max-width: 100%; /* Responsive image */
+      height: auto; /* Maintain aspect ratio */
+      border: 1px solid #ddd; /* Light border */
+      border-radius: 8px; /* Rounded corners */
+      margin: 0 auto 20px auto; /* Center image and add margin below */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="navbar-left">
+      <a href="#" class="navbar-brand">
+        <div class="brand-toggle">
+          <span id="brandText">Al Amin Ifty</span>
+          <img id="brandImg" src="logo.png" alt="Logo" onerror="this.style.display='none'; console.error('Logo image not found.')"> </div>
+      </a>
+    </div>
+    <div class="navbar-center">
+      <h1>Project: Interactive Sales Insights Dashboard Built with Tableau</h1>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h3>View My Tableau Sales Dashboard</h3>
+    <p>Click the button below to explore the interactive sales dashboard built using Tableau, highlighting key insights on sales, profit, quantity, category-wise performance, and trend analysis to support data-driven decision-making.</p>
+    <a class="dashboard-link" href="https://public.tableau.com/app/profile/al.amin.ifty/viz/Book1_17466420379420/SalesDashboard?publish=yes" target="_blank" rel="noopener noreferrer">
+      View Dashboard on Tableau
+    </a>
+
+    <img src="dash.png" 
+         alt="Sneak peek of the Tableau Sales Dashboard" 
+         class="tableau-sneak-peek"
+         onerror="this.onerror=null; this.src='https://placehold.co/700x450/e0e4e8/999999?text=Dashboard+Preview+Not+Found'; this.alt='Error loading dashboard preview image.';">
+    </div>
+
+  <script>
+    const brandText = document.getElementById('brandText');
+    const brandImg = document.getElementById('brandImg');
+    const toggleInterval = 3000; // Time in milliseconds (e.g., 3000ms = 3 seconds)
+
+    if (brandText && brandImg) {
+      // Ensure initial state (text visible, image hidden)
+      brandText.style.opacity = '1';
+      brandImg.style.opacity = '0';
+
+      let isTextVisible = true; // State variable to track current visibility
+
+      setInterval(() => {
+        if (isTextVisible) {
+          // Switch to image
+          brandText.style.opacity = '0';
+          brandImg.style.opacity = '1';
+        } else {
+          // Switch to text
+          brandText.style.opacity = '1';
+          brandImg.style.opacity = '0';
+        }
+        isTextVisible = !isTextVisible; // Toggle the state
+      }, toggleInterval);
+    } else {
+        if (!brandText) console.error("Element with ID 'brandText' not found.");
+        if (!brandImg) console.error("Element with ID 'brandImg' not found.");
+    }
+  </script>
+</body>
+</html>
